@@ -1,7 +1,8 @@
 import pyarrow as pa
+import pyarrow.compute as pc
 
 
-def infer_schema(table: pa.Table) -> pa.Schema:
+def infer_schema(table: "pa.Table") -> "pa.Schema":
     """
     Infers an optimized Arrow schema for the given table.
     - Downcasts integers to the smallest possible bit-width.
@@ -20,8 +21,8 @@ def infer_schema(table: pa.Table) -> pa.Schema:
         # Integer optimization
         if pa.types.is_integer(dtype):
             # Using pyarrow compute for min/max is more efficient than to_pandas
-            min_val = pa.compute.min(column).as_py()
-            max_val = pa.compute.max(column).as_py()
+            min_val = pc.min(column).as_py()
+            max_val = pc.max(column).as_py()
 
             if min_val is not None and max_val is not None:
                 if min_val >= 0:
