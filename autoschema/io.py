@@ -1,4 +1,5 @@
 from typing import Any, Optional
+
 import pyarrow as pa
 import pyarrow.parquet as pq
 
@@ -83,3 +84,9 @@ def read_parquet(path: str) -> tuple["pd.DataFrame", dict[str, str]]:
         )
 
     table = pq.read_table(path)
+
+    # Extract metadata
+    metadata = table.schema.metadata or {}
+    header = {k.decode("utf-8"): v.decode("utf-8") for k, v in metadata.items()}
+
+    return table.to_pandas(), header
