@@ -1,4 +1,7 @@
-# AutoSchema
+# (ARCHIVED) AutoSchema
+
+
+**NOTE: THIS REPOSITORY HAS BEEN ARCHIVED DUE TO A NAME ISSUE IN PYPI. DEVELOPMENT CONTINUES AT https://github.com/edawson/autoparquet**
 
 AutoSchema is a Python package that wraps Parquet/Arrow to automatically generate optimized schemas for your data. It focuses on better compression through automatic bit-packing, int-packing, and dictionary encoding, while providing a convenient "header" system for storing custom metadata.
 
